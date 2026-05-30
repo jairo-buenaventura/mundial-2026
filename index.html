@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mundial 2026 | Jairo Buenaventura</title>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script type="module" crossorigin src="https://widgets.api-sports.io/3.1.0/widgets.js"></script>
+  <style>
+    body { background-color: #1a3a6b; color: white; }
+    h1 { color: #C9A84C; text-align: center; padding: 20px 0 5px 0; font-size: 2rem; letter-spacing: 3px; }
+    p.subtitle { color: #aaaaaa; text-align: center; margin-bottom: 20px; }
+    api-sports-widget { height: 80vh; }
+  </style>
+</head>
+<body>
+
+  <h1>MUNDIAL 2026</h1>
+  <p class="subtitle">Dashboard Interactivo · Datos Oficiales · Jairo Buenaventura</p>
+
+  <!-- Config widget -->
+  <api-sports-widget
+    data-type="config"
+    data-key="fc8c0c09b3fd0a4c674217b3ba6f4190"
+    data-sport="football"
+    data-lang="es"
+    data-theme="dark"
+    data-show-logos="true"
+    data-refresh="30"
+    data-standings="true"
+    data-target-game="#game-content .card-body"
+    data-target-player="modal"
+    data-target-team="modal"
+    data-tab="results"
+    data-league="1"
+    data-season="2026"
+  ></api-sports-widget>
+
+  <div class="container-fluid p-3">
+    <div class="row">
+      <div class="col-3">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body p-0">
+            <api-sports-widget data-type="league"></api-sports-widget>
+          </div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div id="game-content" class="card border-0 shadow-sm">
+          <div class="card-body p-0">
+            <api-sports-widget data-type="game"></api-sports-widget>
+          </div>
+        </div>
+      </div>
+      <div class="col-5">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body p-0">
+            <api-sports-widget data-type="standings"></api-sports-widget>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
