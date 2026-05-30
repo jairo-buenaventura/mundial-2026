@@ -8,18 +8,225 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet">
   <script type="module" crossorigin src="https://widgets.api-sports.io/3.1.0/widgets.js"></script>
   <style>
-    body { background-color: #1a3a6b; color: white; }
-    h1 { color: #C9A84C; text-align: center; padding: 20px 0 5px 0; font-size: 2rem; letter-spacing: 3px; }
-    p.subtitle { color: #aaaaaa; text-align: center; margin-bottom: 20px; }
-    api-sports-widget { height: 80vh; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background-color: #0d1b2a; color: white; font-family: 'Segoe UI', sans-serif; }
+
+    /* HEADER */
+    .header {
+      background: linear-gradient(135deg, #0d1b2a 0%, #1a3a6b 50%, #0d1b2a 100%);
+      border-bottom: 3px solid #C9A84C;
+      padding: 30px 20px 20px 20px;
+      text-align: center;
+    }
+    .header h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      color: #C9A84C;
+      letter-spacing: 6px;
+      text-shadow: 0 0 30px rgba(201,168,76,0.3);
+    }
+    .header p {
+      color: #aaaaaa;
+      font-size: 0.9rem;
+      letter-spacing: 3px;
+      margin-top: 5px;
+    }
+
+    /* CUENTA REGRESIVA */
+    .countdown {
+      background: linear-gradient(90deg, #1a3a6b, #0d1b2a);
+      border: 1px solid #C9A84C;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 600px;
+      text-align: center;
+    }
+    .countdown h2 { color: #C9A84C; font-size: 1rem; letter-spacing: 3px; margin-bottom: 15px; }
+    .countdown-numbers { display: flex; justify-content: center; gap: 20px; }
+    .countdown-item { text-align: center; }
+    .countdown-item span.num { font-size: 2.5rem; font-weight: 800; color: white; display: block; }
+    .countdown-item span.label { font-size: 0.7rem; color: #aaaaaa; letter-spacing: 2px; }
+
+    /* NAVBAR */
+    .navbar-custom {
+      background-color: #1a3a6b;
+      border-bottom: 2px solid #C9A84C;
+      padding: 10px 20px;
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+    }
+    .navbar-custom a {
+      color: #C9A84C;
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      padding: 5px 15px;
+      border-radius: 20px;
+      transition: all 0.3s;
+    }
+    .navbar-custom a:hover { background-color: #C9A84C; color: #0d1b2a; }
+
+    /* SECCIONES */
+    .section { padding: 20px; }
+    .section-title {
+      color: #C9A84C;
+      font-size: 1rem;
+      letter-spacing: 3px;
+      border-left: 4px solid #C9A84C;
+      padding-left: 15px;
+      margin-bottom: 15px;
+    }
+
+    /* WIDGETS */
+    api-sports-widget { height: 75vh; }
+    .widget-card {
+      background-color: #1a1a2e;
+      border: 1px solid #1a3a6b;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    /* POWER BI */
+    .powerbi-container {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #C9A84C;
+    }
+    .powerbi-container iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: none;
+    }
+
+    /* SOBRE EL AUTOR */
+    .author-card {
+      background: linear-gradient(135deg, #1a3a6b, #0d1b2a);
+      border: 1px solid #C9A84C;
+      border-radius: 12px;
+      padding: 30px;
+      text-align: center;
+    }
+    .author-card h3 { color: #C9A84C; font-size: 1.3rem; margin-bottom: 10px; }
+    .author-card p { color: #cccccc; font-size: 0.9rem; line-height: 1.7; margin-bottom: 20px; }
+    .social-links { display: flex; justify-content: center; gap: 15px; }
+    .social-links a {
+      color: #C9A84C;
+      text-decoration: none;
+      border: 1px solid #C9A84C;
+      padding: 8px 20px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      transition: all 0.3s;
+    }
+    .social-links a:hover { background-color: #C9A84C; color: #0d1b2a; }
+
+    /* FOOTER */
+    .footer {
+      background-color: #1a3a6b;
+      border-top: 2px solid #C9A84C;
+      text-align: center;
+      padding: 15px;
+      color: #aaaaaa;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+    }
   </style>
 </head>
 <body>
 
-  <h1>MUNDIAL 2026</h1>
-  <p class="subtitle">Dashboard Interactivo · Datos Oficiales · Jairo Buenaventura</p>
+  <!-- HEADER -->
+  <div class="header">
+    <h1>⚽ MUNDIAL 2026</h1>
+    <p>DASHBOARD INTERACTIVO · DATOS OFICIALES · JAIRO BUENAVENTURA</p>
+  </div>
 
-  <!-- Config widget -->
+  <!-- CUENTA REGRESIVA -->
+  <div class="container">
+    <div class="countdown">
+      <h2>FALTAN</h2>
+      <div class="countdown-numbers">
+        <div class="countdown-item"><span class="num" id="dias">00</span><span class="label">DÍAS</span></div>
+        <div class="countdown-item"><span class="num" id="horas">00</span><span class="label">HORAS</span></div>
+        <div class="countdown-item"><span class="num" id="minutos">00</span><span class="label">MIN</span></div>
+        <div class="countdown-item"><span class="num" id="segundos">00</span><span class="label">SEG</span></div>
+      </div>
+      <p style="color:#aaaaaa; font-size:0.8rem; margin-top:15px; letter-spacing:2px">11 DE JUNIO 2026 · ESTADIO AZTECA · MÉXICO</p>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <div class="navbar-custom">
+    <a href="#en-vivo">EN VIVO</a>
+    <a href="#dashboard">DASHBOARD</a>
+    <a href="#autor">SOBRE MÍ</a>
+  </div>
+
+  <!-- WIDGETS EN VIVO -->
+  <div class="section" id="en-vivo">
+    <div class="container-fluid">
+      <p class="section-title">DATOS EN VIVO</p>
+      <div class="row g-3">
+        <div class="col-md-3">
+          <div class="widget-card">
+            <api-sports-widget data-type="league"></api-sports-widget>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div id="game-content" class="widget-card">
+            <div class="card-body p-0">
+              <api-sports-widget data-type="game"></api-sports-widget>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="widget-card">
+            <api-sports-widget data-type="standings"></api-sports-widget>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ <!-- DASHBOARD POWER BI -->
+  <div class="section" id="dashboard">
+    <div class="container">
+      <p class="section-title">DASHBOARD QATAR 2022</p>
+      <div class="powerbi-container">
+        <iframe src="" allowFullScreen="true"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- SOBRE EL AUTOR -->
+  <div class="section" id="autor">
+    <div class="container">
+      <p class="section-title">SOBRE EL AUTOR</p>
+      <div class="author-card">
+        <h3>Jairo Buenaventura</h3>
+        <p>Maestría en Entrenamiento de Alto Rendimiento con énfasis en Fútbol · Universidad de Porto<br>
+        Apasionado por el análisis de datos aplicado al fútbol de alto rendimiento.<br>
+        Este dashboard nació de combinar formación académica con herramientas modernas de datos.</p>
+        <div class="social-links">
+          <a href="https://linkedin.com/in/jairo-buenaventura" target="_blank">LinkedIn</a>
+          <a href="https://twitter.com/jairo-buenaventura" target="_blank">X / Twitter</a>
+          <a href="https://github.com/jairo-buenaventura" target="_blank">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>© 2026 Jairo Buenaventura · Datos proporcionados por API-Football · Actualización automática cada 30 segundos</p>
+  </div>
+
+  <!-- CONFIG WIDGET -->
   <api-sports-widget
     data-type="config"
     data-key="fc8c0c09b3fd0a4c674217b3ba6f4190"
@@ -37,31 +244,28 @@
     data-season="2026"
   ></api-sports-widget>
 
-  <div class="container-fluid p-3">
-    <div class="row">
-      <div class="col-3">
-        <div class="card border-0 shadow-sm">
-          <div class="card-body p-0">
-            <api-sports-widget data-type="league"></api-sports-widget>
-          </div>
-        </div>
-      </div>
-      <div class="col-4">
-        <div id="game-content" class="card border-0 shadow-sm">
-          <div class="card-body p-0">
-            <api-sports-widget data-type="game"></api-sports-widget>
-          </div>
-        </div>
-      </div>
-      <div class="col-5">
-        <div class="card border-0 shadow-sm">
-          <div class="card-body p-0">
-            <api-sports-widget data-type="standings"></api-sports-widget>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <!-- CUENTA REGRESIVA JS -->
+  <script>
+    function updateCountdown() {
+      const mundial = new Date('2026-06-11T19:00:00-06:00');
+      const now = new Date();
+      const diff = mundial - now;
+      if (diff <= 0) {
+        document.getElementById('dias').textContent = '00';
+        return;
+      }
+      const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutos = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const segundos = Math.floor((diff % (1000 * 60)) / 1000);
+      document.getElementById('dias').textContent = String(dias).padStart(2, '0');
+      document.getElementById('horas').textContent = String(horas).padStart(2, '0');
+      document.getElementById('minutos').textContent = String(minutos).padStart(2, '0');
+      document.getElementById('segundos').textContent = String(segundos).padStart(2, '0');
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
 
 </body>
 </html>
