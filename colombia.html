@@ -36,18 +36,17 @@
     .bar-area { display: flex; align-items: center; gap: 10px; }
     .bar-track { flex: 1; height: 8px; background: #1a1a1a; border-radius: 4px; overflow: hidden; }
     .bar-fill { height: 100%; border-radius: 4px; }
-    .mins-label { font-size: 12px; font-weight: 500; color: #C9A84C; min-width: 45px; text-align: right; }
     .stat-col { font-size: 13px; font-weight: 500; color: white; text-align: center; }
     .stat-col span { font-size: 10px; color: #666; display: block; }
-    .table-header { display: grid; grid-template-columns: 36px 180px 1fr 60px 60px 60px; gap: 12px; padding: 8px 0; border-bottom: 1px solid #333; max-width: 1000px; margin: 0 20px 0; }
+    .table-header { display: grid; grid-template-columns: 36px 180px 1fr 60px 60px 60px; gap: 12px; padding: 8px 0 8px 20px; border-bottom: 1px solid #333; max-width: 1000px; margin: 0 auto; }
     .table-header span { font-size: 10px; color: #666; letter-spacing: 1px; text-align: center; }
     .table-header span:nth-child(2) { text-align: left; }
     .footer { text-align: center; padding: 20px; color: #444; font-size: 12px; border-top: 1px solid #1a1a1a; margin-top: 20px; }
     .back-link { display: inline-block; margin: 20px; color: #C9A84C; text-decoration: none; font-size: 13px; letter-spacing: 1px; }
     @media (max-width: 600px) {
-      .player-row { grid-template-columns: 36px 1fr 80px 40px 40px; }
+      .player-row { grid-template-columns: 36px 1fr 50px 40px 40px; }
       .bar-area { display: none; }
-      .table-header { grid-template-columns: 36px 1fr 80px 40px 40px; }
+      .table-header { grid-template-columns: 36px 1fr 50px 40px 40px; }
     }
   </style>
 </head>
@@ -118,7 +117,7 @@ const players = [
   { name: "James Rodriguez", club: "Minnesota United", pos: "VOL", mins: 2161, goles: 5, asis: 13 },
   { name: "Kevin Castano", club: "River Plate", pos: "VOL", mins: 2445, goles: 0, asis: 1 },
   { name: "Jaminton Campaz", club: "Rosario Central", pos: "VOL", mins: 2853, goles: 3, asis: 3 },
-  { name: "Luis Diaz", club: "Bayern Munchen", pos: "DEL", mins: 5541, goles: 32, asis: 29 },
+  { name: "Luis Diaz", club: "Bayern Munchen", pos: "DEL", mins: 4730, goles: 32, asis: 29 },
   { name: "Jhon Cordoba", club: "Krasnodar", pos: "DEL", mins: 4090, goles: 26, asis: 11 },
   { name: "Cucho Hernandez", club: "Real Betis", pos: "DEL", mins: 3727, goles: 16, asis: 5 },
   { name: "Luis Suarez", club: "Sporting CP", pos: "DEL", mins: 5208, goles: 47, asis: 8 },
@@ -147,32 +146,22 @@ function sort(field, btn) {
 function render() {
   const filtered = currentFilter === 'todos' ? players : players.filter(p => p.pos === currentFilter);
   const sorted = [...filtered].sort((a, b) => b[currentSort] - a[currentSort]);
-
   const avg = Math.round(filtered.reduce((s, p) => s + p.mins, 0) / filtered.length);
   const top = [...filtered].sort((a, b) => b.mins - a.mins)[0];
   const totalGoles = filtered.reduce((s, p) => s + p.goles, 0);
   const totalAsist = filtered.reduce((s, p) => s + p.asis, 0);
 
+  const high = filtered.filter(p => p.mins >= 3000).length;
   document.getElementById('stats-grid').innerHTML = `
     <div class="stat-card">
-      <div class="stat-label">PROMEDIO MINUTOS</div>
-      <div class="stat-value">${avg.toLocaleString()}</div>
-      <div class="stat-sub">por jugador</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-label">MAS MINUTOS</div>
+      <div class="stat-label">JUGADOR CON MAS MINUTOS</div>
       <div class="stat-value" style="font-size:15px">${top.name}</div>
-      <div class="stat-sub">${top.mins.toLocaleString()} min</div>
+      <div class="stat-sub">${top.mins.toLocaleString()} min · ${top.club}</div>
     </div>
     <div class="stat-card">
-      <div class="stat-label">TOTAL GOLES</div>
-      <div class="stat-value">${totalGoles}</div>
-      <div class="stat-sub">temporada</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-label">TOTAL ASISTENCIAS</div>
-      <div class="stat-value">${totalAsist}</div>
-      <div class="stat-sub">temporada</div>
+      <div class="stat-label">JUGADORES +3000 MIN</div>
+      <div class="stat-value">${high}</div>
+      <div class="stat-sub">de ${filtered.length} convocados</div>
     </div>
   `;
 
