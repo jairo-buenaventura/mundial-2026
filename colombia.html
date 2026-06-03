@@ -11,31 +11,44 @@
     .header { background: linear-gradient(135deg, #0A0A0A, #1a1a1a); border-bottom: 2px solid #C9A84C; padding: 30px 20px; text-align: center; }
     .header h1 { color: #C9A84C; font-size: 2rem; letter-spacing: 4px; }
     .header p { color: #888; font-size: 0.9rem; letter-spacing: 2px; margin-top: 5px; }
-    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; padding: 20px; max-width: 900px; margin: 0 auto; }
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; padding: 20px; max-width: 1000px; margin: 0 auto; }
     .stat-card { background: #111; border: 1px solid #222; border-radius: 8px; padding: 16px; text-align: center; }
     .stat-label { font-size: 11px; color: #888; letter-spacing: 2px; margin-bottom: 6px; }
     .stat-value { font-size: 24px; font-weight: 500; color: white; }
     .stat-sub { font-size: 12px; color: #C9A84C; margin-top: 4px; }
-    .filters { display: flex; gap: 8px; flex-wrap: wrap; padding: 0 20px 20px; max-width: 900px; margin: 0 auto; }
+    .filters { display: flex; gap: 8px; flex-wrap: wrap; padding: 0 20px 20px; max-width: 1000px; margin: 0 auto; }
     .filter-btn { padding: 6px 16px; border: 1px solid #333; border-radius: 20px; background: transparent; color: #888; font-size: 13px; cursor: pointer; transition: all 0.2s; }
     .filter-btn.active { background: #C9A84C; color: #0A0A0A; border-color: #C9A84C; font-weight: 500; }
-    .players-list { max-width: 900px; margin: 0 auto; padding: 0 20px 40px; }
-    .player-row { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid #1a1a1a; }
+    .sort-btns { display: flex; gap: 8px; flex-wrap: wrap; padding: 0 20px 20px; max-width: 1000px; margin: 0 auto; }
+    .sort-btn { padding: 5px 12px; border: 1px solid #222; border-radius: 4px; background: #111; color: #666; font-size: 12px; cursor: pointer; transition: all 0.2s; }
+    .sort-btn.active { color: #C9A84C; border-color: #C9A84C; }
+    .players-list { max-width: 1000px; margin: 0 auto; padding: 0 20px 40px; }
+    .player-row { display: grid; grid-template-columns: 36px 180px 1fr 60px 60px 60px; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid #1a1a1a; }
+    .player-row:last-child { border-bottom: none; }
     .pos-badge { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 500; flex-shrink: 0; }
     .POR { background: #2a1f00; color: #f59e0b; }
     .DEF { background: #001f3f; color: #3b82f6; }
     .VOL { background: #001f0f; color: #22c55e; }
     .DEL { background: #1f0000; color: #ef4444; }
-    .player-info { width: 180px; flex-shrink: 0; }
+    .player-info { min-width: 0; }
     .player-name { font-size: 14px; font-weight: 500; color: white; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .player-club { font-size: 12px; color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .bar-area { flex: 1; display: flex; align-items: center; gap: 10px; }
+    .bar-area { display: flex; align-items: center; gap: 10px; }
     .bar-track { flex: 1; height: 8px; background: #1a1a1a; border-radius: 4px; overflow: hidden; }
     .bar-fill { height: 100%; border-radius: 4px; }
-    .mins-label { font-size: 13px; font-weight: 500; color: #C9A84C; min-width: 50px; text-align: right; }
-    .footer { text-align: center; padding: 20px; color: #444; font-size: 12px; border-top: 1px solid #1a1a1a; }
+    .mins-label { font-size: 12px; font-weight: 500; color: #C9A84C; min-width: 45px; text-align: right; }
+    .stat-col { font-size: 13px; font-weight: 500; color: white; text-align: center; }
+    .stat-col span { font-size: 10px; color: #666; display: block; }
+    .table-header { display: grid; grid-template-columns: 36px 180px 1fr 60px 60px 60px; gap: 12px; padding: 8px 0; border-bottom: 1px solid #333; max-width: 1000px; margin: 0 20px 0; }
+    .table-header span { font-size: 10px; color: #666; letter-spacing: 1px; text-align: center; }
+    .table-header span:nth-child(2) { text-align: left; }
+    .footer { text-align: center; padding: 20px; color: #444; font-size: 12px; border-top: 1px solid #1a1a1a; margin-top: 20px; }
     .back-link { display: inline-block; margin: 20px; color: #C9A84C; text-decoration: none; font-size: 13px; letter-spacing: 1px; }
-    @media (max-width: 600px) { .player-info { width: 120px; } }
+    @media (max-width: 600px) {
+      .player-row { grid-template-columns: 36px 1fr 80px 40px 40px; }
+      .bar-area { display: none; }
+      .table-header { grid-template-columns: 36px 1fr 80px 40px 40px; }
+    }
   </style>
 </head>
 <body>
@@ -43,8 +56,8 @@
 <a href="index.html" class="back-link">← VOLVER AL DASHBOARD</a>
 
 <div class="header">
-  <h1>🇨🇴 COLOMBIA · MUNDIAL 2026</h1>
-  <p>MINUTOS JUGADOS · TEMPORADA 2025/26 · LIGAS DOMÉSTICAS + COPAS</p>
+  <h1>COLOMBIA · MUNDIAL 2026</h1>
+  <p>MINUTOS JUGADOS · CLUB + SELECCION · JULIO 2025 – JUNIO 2026</p>
 </div>
 
 <div class="stats-grid" id="stats-grid"></div>
@@ -57,46 +70,65 @@
   <button class="filter-btn" onclick="filter('DEL', this)">Delanteros</button>
 </div>
 
+<div class="sort-btns">
+  <span style="font-size:12px; color:#666; align-self:center;">Ordenar por:</span>
+  <button class="sort-btn active" onclick="sort('mins', this)">Minutos</button>
+  <button class="sort-btn" onclick="sort('goles', this)">Goles</button>
+  <button class="sort-btn" onclick="sort('asis', this)">Asistencias</button>
+</div>
+
+<div class="table-header">
+  <span></span>
+  <span>Jugador</span>
+  <span style="text-align:left; padding-left:8px;">Minutos</span>
+  <span>MIN</span>
+  <span>G</span>
+  <span>A</span>
+</div>
+
 <div class="players-list" id="players-list"></div>
 
 <div class="footer">
-  Fuentes: Transfermarkt · Squawka · ESPN · Algunos valores son estimados<br>
-  © 2026 Jairo Buenaventura · <a href="https://www.linkedin.com/in/jairo-buenaventura" style="color:#C9A84C">LinkedIn</a>
+  Fuentes: SofaScore · Periodo julio 2025 - junio 2026 · Club + Seleccion Colombia<br><br>
+  <a href="https://www.linkedin.com/in/jairo-buenaventura" style="color:#C9A84C">LinkedIn</a> ·
+  <a href="https://github.com/jairo-buenaventura" style="color:#C9A84C">GitHub</a> ·
+  <a href="index.html" style="color:#C9A84C">Dashboard Mundial 2026</a>
 </div>
 
 <script>
 const players = [
-  { name: 'Luis Díaz', club: 'Bayern München', pos: 'DEL', mins: 4250, goles: 26, asis: 23 },
-  { name: 'Daniel Muñoz', club: 'Crystal Palace', pos: 'DEF', mins: 3780, goles: 5, asis: 4 },
-  { name: 'Richard Ríos', club: 'Benfica', pos: 'VOL', mins: 3200, goles: 3, asis: 5 },
-  { name: 'Jhon Arias', club: 'Palmeiras', pos: 'VOL', mins: 3100, goles: 8, asis: 6 },
-  { name: 'Álvaro Montero', club: 'Vélez Sarsfield', pos: 'POR', mins: 3060, goles: 0, asis: 0 },
-  { name: 'Jorge Carrascal', club: 'Flamengo', pos: 'VOL', mins: 2900, goles: 7, asis: 8 },
-  { name: 'Willer Ditta', club: 'Cruz Azul', pos: 'DEF', mins: 2900, goles: 2, asis: 1 },
-  { name: 'Dávinson Sánchez', club: 'Galatasaray', pos: 'DEF', mins: 2800, goles: 1, asis: 0 },
-  { name: 'Camilo Vargas', club: 'Atlas', pos: 'POR', mins: 2700, goles: 0, asis: 0 },
-  { name: 'Johan Mojica', club: 'Mallorca', pos: 'DEF', mins: 2700, goles: 0, asis: 3 },
-  { name: 'Gustavo Puerta', club: 'Racing Santander', pos: 'VOL', mins: 2650, goles: 3, asis: 4 },
-  { name: 'Jhon Lucumí', club: 'Bologna', pos: 'DEF', mins: 2600, goles: 1, asis: 1 },
-  { name: 'Jefferson Lerma', club: 'Crystal Palace', pos: 'VOL', mins: 2535, goles: 1, asis: 2 },
-  { name: 'Kevin Castaño', club: 'River Plate', pos: 'VOL', mins: 2200, goles: 2, asis: 3 },
-  { name: 'J.C. Portilla', club: 'Ath. Paranaense', pos: 'VOL', mins: 2300, goles: 2, asis: 3 },
-  { name: 'Cucho Hernández', club: 'Real Betis', pos: 'DEL', mins: 2100, goles: 9, asis: 4 },
-  { name: 'Deiver Machado', club: 'Nantes', pos: 'DEF', mins: 2100, goles: 0, asis: 2 },
-  { name: 'Juan F. Quintero', club: 'River Plate', pos: 'VOL', mins: 2400, goles: 4, asis: 7 },
-  { name: 'Jhon Córdoba', club: 'Krasnodar', pos: 'DEL', mins: 2400, goles: 10, asis: 2 },
-  { name: 'Santiago Arias', club: 'Independiente', pos: 'DEF', mins: 1950, goles: 1, asis: 1 },
-  { name: 'Luis Suárez', club: 'Sporting Lisboa', pos: 'DEL', mins: 1900, goles: 5, asis: 3 },
-  { name: 'Jaminton Campaz', club: 'Rosario Central', pos: 'VOL', mins: 1800, goles: 3, asis: 4 },
-  { name: 'Yerry Mina', club: 'Cagliari', pos: 'DEF', mins: 1800, goles: 1, asis: 0 },
-  { name: 'Carlos A. Gómez', club: 'Vasco da Gama', pos: 'DEL', mins: 1600, goles: 4, asis: 2 },
-  { name: 'David Ospina', club: 'Atlético Nacional', pos: 'POR', mins: 1440, goles: 0, asis: 0 },
-  { name: 'James Rodríguez', club: 'Minnesota United', pos: 'VOL', mins: 640, goles: 0, asis: 2 },
+  { name: "Camilo Vargas", club: "Atlas", pos: "POR", mins: 3578, goles: 0, asis: 0 },
+  { name: "Alvaro Montero", club: "Velez Sarsfield", pos: "POR", mins: 2610, goles: 0, asis: 0 },
+  { name: "David Ospina", club: "Atletico Nacional", pos: "POR", mins: 3981, goles: 0, asis: 0 },
+  { name: "Daniel Munoz", club: "Crystal Palace", pos: "DEF", mins: 4428, goles: 2, asis: 8 },
+  { name: "Willer Ditta", club: "Cruz Azul", pos: "DEF", mins: 4875, goles: 0, asis: 3 },
+  { name: "Davinson Sanchez", club: "Galatasaray", pos: "DEF", mins: 4761, goles: 0, asis: 4 },
+  { name: "Johan Mojica", club: "Mallorca", pos: "DEF", mins: 3384, goles: 0, asis: 4 },
+  { name: "Jhon Lucumi", club: "Bologna", pos: "DEF", mins: 4628, goles: 1, asis: 3 },
+  { name: "Deiver Machado", club: "Nantes", pos: "DEF", mins: 1808, goles: 0, asis: 3 },
+  { name: "Santiago Arias", club: "Independiente", pos: "DEF", mins: 3424, goles: 0, asis: 4 },
+  { name: "Yerry Mina", club: "Cagliari", pos: "DEF", mins: 2894, goles: 0, asis: 5 },
+  { name: "Richard Rios", club: "Benfica", pos: "VOL", mins: 4905, goles: 2, asis: 14 },
+  { name: "Jorge Carrascal", club: "Flamengo", pos: "VOL", mins: 3588, goles: 0, asis: 14 },
+  { name: "Jhon Arias", club: "Palmeiras", pos: "VOL", mins: 4703, goles: 3, asis: 12 },
+  { name: "Gustavo Puerta", club: "R. Santander", pos: "VOL", mins: 3103, goles: 0, asis: 5 },
+  { name: "Jefferson Lerma", club: "Crystal Palace", pos: "VOL", mins: 3984, goles: 0, asis: 7 },
+  { name: "Juan F. Quintero", club: "River Plate", pos: "VOL", mins: 2743, goles: 3, asis: 14 },
+  { name: "J.C. Portilla", club: "Athletico PR", pos: "VOL", mins: 2387, goles: 0, asis: 1 },
+  { name: "James Rodriguez", club: "Minnesota United", pos: "VOL", mins: 2161, goles: 5, asis: 13 },
+  { name: "Kevin Castano", club: "River Plate", pos: "VOL", mins: 2445, goles: 0, asis: 1 },
+  { name: "Jaminton Campaz", club: "Rosario Central", pos: "VOL", mins: 2853, goles: 3, asis: 3 },
+  { name: "Luis Diaz", club: "Bayern Munchen", pos: "DEL", mins: 5541, goles: 32, asis: 29 },
+  { name: "Jhon Cordoba", club: "Krasnodar", pos: "DEL", mins: 4090, goles: 26, asis: 11 },
+  { name: "Cucho Hernandez", club: "Real Betis", pos: "DEL", mins: 3727, goles: 16, asis: 5 },
+  { name: "Luis Suarez", club: "Sporting CP", pos: "DEL", mins: 5208, goles: 47, asis: 8 },
+  { name: "Andres Gomez", club: "Vasco da Gama", pos: "DEL", mins: 3966, goles: 4, asis: 9 },
 ];
 
 const barColors = { POR: '#f59e0b', DEF: '#3b82f6', VOL: '#22c55e', DEL: '#ef4444' };
 const maxMins = Math.max(...players.map(p => p.mins));
 let currentFilter = 'todos';
+let currentSort = 'mins';
 
 function filter(pos, btn) {
   currentFilter = pos;
@@ -105,13 +137,21 @@ function filter(pos, btn) {
   render();
 }
 
+function sort(field, btn) {
+  currentSort = field;
+  document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  render();
+}
+
 function render() {
   const filtered = currentFilter === 'todos' ? players : players.filter(p => p.pos === currentFilter);
-  const sorted = [...filtered].sort((a, b) => b.mins - a.mins);
+  const sorted = [...filtered].sort((a, b) => b[currentSort] - a[currentSort]);
 
   const avg = Math.round(filtered.reduce((s, p) => s + p.mins, 0) / filtered.length);
-  const top = sorted[0];
-  const high = filtered.filter(p => p.mins >= 3000).length;
+  const top = [...filtered].sort((a, b) => b.mins - a.mins)[0];
+  const totalGoles = filtered.reduce((s, p) => s + p.goles, 0);
+  const totalAsist = filtered.reduce((s, p) => s + p.asis, 0);
 
   document.getElementById('stats-grid').innerHTML = `
     <div class="stat-card">
@@ -120,23 +160,23 @@ function render() {
       <div class="stat-sub">por jugador</div>
     </div>
     <div class="stat-card">
-      <div class="stat-label">MÁS MINUTOS</div>
-      <div class="stat-value" style="font-size:16px">${top.name}</div>
+      <div class="stat-label">MAS MINUTOS</div>
+      <div class="stat-value" style="font-size:15px">${top.name}</div>
       <div class="stat-sub">${top.mins.toLocaleString()} min</div>
     </div>
     <div class="stat-card">
-      <div class="stat-label">+3000 MINUTOS</div>
-      <div class="stat-value">${high}</div>
-      <div class="stat-sub">jugadores</div>
+      <div class="stat-label">TOTAL GOLES</div>
+      <div class="stat-value">${totalGoles}</div>
+      <div class="stat-sub">temporada</div>
     </div>
     <div class="stat-card">
-      <div class="stat-label">CONVOCADOS</div>
-      <div class="stat-value">${filtered.length}</div>
-      <div class="stat-sub">seleccionados</div>
+      <div class="stat-label">TOTAL ASISTENCIAS</div>
+      <div class="stat-value">${totalAsist}</div>
+      <div class="stat-sub">temporada</div>
     </div>
   `;
 
-  document.getElementById('players-list').innerHTML = sorted.map((p, i) => `
+  document.getElementById('players-list').innerHTML = sorted.map(p => `
     <div class="player-row">
       <div class="pos-badge ${p.pos}">${p.pos}</div>
       <div class="player-info">
@@ -147,8 +187,10 @@ function render() {
         <div class="bar-track">
           <div class="bar-fill" style="width:${Math.round((p.mins/maxMins)*100)}%; background:${barColors[p.pos]};"></div>
         </div>
-        <div class="mins-label">${p.mins.toLocaleString()}'</div>
       </div>
+      <div class="stat-col">${p.mins.toLocaleString()}<span>MIN</span></div>
+      <div class="stat-col">${p.goles}<span>G</span></div>
+      <div class="stat-col">${p.asis}<span>A</span></div>
     </div>
   `).join('');
 }
