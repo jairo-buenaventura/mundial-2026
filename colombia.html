@@ -11,10 +11,10 @@
     .header { background: linear-gradient(135deg, #0A0A0A, #1a1a1a); border-bottom: 2px solid #C9A84C; padding: 30px 20px; text-align: center; }
     .header h1 { color: #C9A84C; font-size: 2rem; letter-spacing: 4px; }
     .header p { color: #888; font-size: 0.9rem; letter-spacing: 2px; margin-top: 5px; }
-    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; padding: 20px; max-width: 1000px; margin: 0 auto; }
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; padding: 20px; max-width: 1000px; margin: 0 auto; }
     .stat-card { background: #111; border: 1px solid #222; border-radius: 8px; padding: 16px; text-align: center; }
     .stat-label { font-size: 11px; color: #888; letter-spacing: 2px; margin-bottom: 6px; }
-    .stat-value { font-size: 24px; font-weight: 500; color: white; }
+    .stat-value { font-size: 22px; font-weight: 500; color: white; }
     .stat-sub { font-size: 12px; color: #C9A84C; margin-top: 4px; }
     .filters { display: flex; gap: 8px; flex-wrap: wrap; padding: 0 20px 20px; max-width: 1000px; margin: 0 auto; }
     .filter-btn { padding: 6px 16px; border: 1px solid #333; border-radius: 20px; background: transparent; color: #888; font-size: 13px; cursor: pointer; transition: all 0.2s; }
@@ -56,7 +56,7 @@
 
 <div class="header">
   <h1>COLOMBIA · MUNDIAL 2026</h1>
-  <p>MINUTOS JUGADOS · CLUB + SELECCION · JULIO 2025 – JUNIO 2026</p>
+  <p>MINUTOS JUGADOS · CLUB + SELECCION · 11 JUN 2025 – 1 JUN 2026 · FUENTE: SOFASCORE</p>
 </div>
 
 <div class="stats-grid" id="stats-grid"></div>
@@ -88,7 +88,8 @@
 <div class="players-list" id="players-list"></div>
 
 <div class="footer">
-  Fuentes: SofaScore · Periodo julio 2025 - junio 2026 · Club + Seleccion Colombia<br><br>
+  Fuente: SofaScore · Verificado partido a partido · 11 jun 2025 – 1 jun 2026 · Club + Seleccion Colombia<br>
+  Grupo K: Colombia vs Uzbekistan · RD Congo · Portugal<br><br>
   <a href="https://www.linkedin.com/in/jairo-buenaventura" style="color:#C9A84C">LinkedIn</a> ·
   <a href="https://github.com/jairo-buenaventura" style="color:#C9A84C">GitHub</a> ·
   <a href="index.html" style="color:#C9A84C">Dashboard Mundial 2026</a>
@@ -96,32 +97,32 @@
 
 <script>
 const players = [
-  { name: "Camilo Vargas", club: "Atlas", pos: "POR", mins: 3578, goles: 0, asis: 0 },
-  { name: "Alvaro Montero", club: "Velez Sarsfield", pos: "POR", mins: 2610, goles: 0, asis: 0 },
-  { name: "David Ospina", club: "Atletico Nacional", pos: "POR", mins: 3981, goles: 0, asis: 0 },
-  { name: "Daniel Munoz", club: "Crystal Palace", pos: "DEF", mins: 4428, goles: 2, asis: 8 },
-  { name: "Willer Ditta", club: "Cruz Azul", pos: "DEF", mins: 4875, goles: 0, asis: 3 },
-  { name: "Davinson Sanchez", club: "Galatasaray", pos: "DEF", mins: 4761, goles: 0, asis: 4 },
-  { name: "Johan Mojica", club: "Mallorca", pos: "DEF", mins: 3384, goles: 0, asis: 4 },
-  { name: "Jhon Lucumi", club: "Bologna", pos: "DEF", mins: 4628, goles: 1, asis: 3 },
-  { name: "Deiver Machado", club: "Nantes", pos: "DEF", mins: 1808, goles: 0, asis: 3 },
-  { name: "Santiago Arias", club: "Independiente", pos: "DEF", mins: 3424, goles: 0, asis: 4 },
-  { name: "Yerry Mina", club: "Cagliari", pos: "DEF", mins: 2894, goles: 0, asis: 5 },
-  { name: "Richard Rios", club: "Benfica", pos: "VOL", mins: 4905, goles: 2, asis: 14 },
-  { name: "Jorge Carrascal", club: "Flamengo", pos: "VOL", mins: 3588, goles: 0, asis: 14 },
-  { name: "Jhon Arias", club: "Palmeiras", pos: "VOL", mins: 4703, goles: 3, asis: 12 },
-  { name: "Gustavo Puerta", club: "R. Santander", pos: "VOL", mins: 3103, goles: 0, asis: 5 },
-  { name: "Jefferson Lerma", club: "Crystal Palace", pos: "VOL", mins: 3984, goles: 0, asis: 7 },
-  { name: "Juan F. Quintero", club: "River Plate", pos: "VOL", mins: 2743, goles: 3, asis: 14 },
-  { name: "J.C. Portilla", club: "Athletico PR", pos: "VOL", mins: 2387, goles: 0, asis: 1 },
-  { name: "James Rodriguez", club: "Minnesota United", pos: "VOL", mins: 2161, goles: 5, asis: 13 },
-  { name: "Kevin Castano", club: "River Plate", pos: "VOL", mins: 2445, goles: 0, asis: 1 },
-  { name: "Jaminton Campaz", club: "Rosario Central", pos: "VOL", mins: 2853, goles: 3, asis: 3 },
-  { name: "Luis Diaz", club: "Bayern Munchen", pos: "DEL", mins: 4730, goles: 32, asis: 29 },
-  { name: "Jhon Cordoba", club: "Krasnodar", pos: "DEL", mins: 4090, goles: 26, asis: 11 },
-  { name: "Cucho Hernandez", club: "Real Betis", pos: "DEL", mins: 3727, goles: 16, asis: 5 },
-  { name: "Luis Suarez", club: "Sporting CP", pos: "DEL", mins: 5208, goles: 47, asis: 8 },
-  { name: "Andres Gomez", club: "Vasco da Gama", pos: "DEL", mins: 3966, goles: 4, asis: 9 },
+  { name: "Camilo Vargas", club: "Atlas", pos: "POR", mins: 3494, goles: 0, asis: 0 },
+  { name: "Alvaro Montero", club: "Velez Sarsfield", pos: "POR", mins: 1951, goles: 0, asis: 0 },
+  { name: "David Ospina", club: "Atletico Nacional", pos: "POR", mins: 3841, goles: 0, asis: 0 },
+  { name: "Davinson Sanchez", club: "Galatasaray", pos: "DEF", mins: 4376, goles: 0, asis: 4 },
+  { name: "Jhon Lucumi", club: "Bologna", pos: "DEF", mins: 4120, goles: 0, asis: 3 },
+  { name: "Yerry Mina", club: "Cagliari", pos: "DEF", mins: 2439, goles: 0, asis: 0 },
+  { name: "Willer Ditta", club: "Cruz Azul", pos: "DEF", mins: 4777, goles: 0, asis: 3 },
+  { name: "Daniel Munoz", club: "Crystal Palace", pos: "DEF", mins: 4417, goles: 0, asis: 8 },
+  { name: "Santiago Arias", club: "Independiente", pos: "DEF", mins: 2975, goles: 0, asis: 2 },
+  { name: "Johan Mojica", club: "Mallorca", pos: "DEF", mins: 3207, goles: 0, asis: 5 },
+  { name: "Deiver Machado", club: "Nantes", pos: "DEF", mins: 1444, goles: 0, asis: 0 },
+  { name: "Richard Rios", club: "Benfica", pos: "VOL", mins: 4776, goles: 0, asis: 11 },
+  { name: "Jefferson Lerma", club: "Crystal Palace", pos: "VOL", mins: 3302, goles: 0, asis: 3 },
+  { name: "Kevin Castano", club: "River Plate", pos: "VOL", mins: 2398, goles: 0, asis: 0 },
+  { name: "J.C. Portilla", club: "Athletico PR", pos: "VOL", mins: 2097, goles: 0, asis: 2 },
+  { name: "Gustavo Puerta", club: "R. Santander", pos: "VOL", mins: 2931, goles: 0, asis: 1 },
+  { name: "Jhon Arias", club: "Palmeiras", pos: "VOL", mins: 4020, goles: 8, asis: 3 },
+  { name: "Jorge Carrascal", club: "Flamengo", pos: "VOL", mins: 3040, goles: 4, asis: 7 },
+  { name: "Juan F. Quintero", club: "River Plate", pos: "VOL", mins: 2478, goles: 5, asis: 8 },
+  { name: "James Rodriguez", club: "Leon / Minnesota", pos: "VOL", mins: 2080, goles: 5, asis: 7 },
+  { name: "Jaminton Campaz", club: "Rosario Central", pos: "VOL", mins: 2487, goles: 2, asis: 4 },
+  { name: "Carlos A. Gomez", club: "Vasco da Gama", pos: "VOL", mins: 3802, goles: 0, asis: 0 },
+  { name: "Luis Diaz", club: "Bayern Munchen", pos: "DEL", mins: 4835, goles: 17, asis: 18 },
+  { name: "Cucho Hernandez", club: "Real Betis", pos: "DEL", mins: 3232, goles: 7, asis: 5 },
+  { name: "Luis J. Suarez", club: "Sporting CP", pos: "DEL", mins: 4698, goles: 22, asis: 8 },
+  { name: "Jhon Cordoba", club: "Krasnodar", pos: "DEL", mins: 3628, goles: 17, asis: 5 },
 ];
 
 const barColors = { POR: '#f59e0b', DEF: '#3b82f6', VOL: '#22c55e', DEL: '#ef4444' };
@@ -146,16 +147,13 @@ function sort(field, btn) {
 function render() {
   const filtered = currentFilter === 'todos' ? players : players.filter(p => p.pos === currentFilter);
   const sorted = [...filtered].sort((a, b) => b[currentSort] - a[currentSort]);
-  const avg = Math.round(filtered.reduce((s, p) => s + p.mins, 0) / filtered.length);
   const top = [...filtered].sort((a, b) => b.mins - a.mins)[0];
-  const totalGoles = filtered.reduce((s, p) => s + p.goles, 0);
-  const totalAsist = filtered.reduce((s, p) => s + p.asis, 0);
-
   const high = filtered.filter(p => p.mins >= 3000).length;
+
   document.getElementById('stats-grid').innerHTML = `
     <div class="stat-card">
       <div class="stat-label">JUGADOR CON MAS MINUTOS</div>
-      <div class="stat-value" style="font-size:15px">${top.name}</div>
+      <div class="stat-value" style="font-size:16px">${top.name}</div>
       <div class="stat-sub">${top.mins.toLocaleString()} min · ${top.club}</div>
     </div>
     <div class="stat-card">
