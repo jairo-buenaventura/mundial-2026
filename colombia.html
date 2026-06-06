@@ -8,45 +8,50 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { background-color: #0A0A0A; color: white; font-family: 'Segoe UI', sans-serif; }
-    .header { background: linear-gradient(135deg, #0A0A0A, #1a1a1a); border-bottom: 2px solid #C9A84C; padding: 30px 20px; text-align: center; }
+    .header { background: linear-gradient(135deg, #0A0A0A, #111); border-bottom: 2px solid #C9A84C; padding: 30px 20px; text-align: center; }
     .header h1 { color: #C9A84C; font-size: 2rem; letter-spacing: 4px; }
-    .header p { color: #888; font-size: 0.9rem; letter-spacing: 2px; margin-top: 5px; }
-    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; padding: 20px; max-width: 1000px; margin: 0 auto; }
-    .stat-card { background: #111; border: 1px solid #222; border-radius: 8px; padding: 16px; text-align: center; }
-    .stat-label { font-size: 11px; color: #888; letter-spacing: 2px; margin-bottom: 6px; }
-    .stat-value { font-size: 22px; font-weight: 500; color: white; }
-    .stat-sub { font-size: 12px; color: #C9A84C; margin-top: 4px; }
-    .filters { display: flex; gap: 8px; flex-wrap: wrap; padding: 0 20px 20px; max-width: 1000px; margin: 0 auto; }
-    .filter-btn { padding: 6px 16px; border: 1px solid #333; border-radius: 20px; background: transparent; color: #888; font-size: 13px; cursor: pointer; transition: all 0.2s; }
-    .filter-btn.active { background: #C9A84C; color: #0A0A0A; border-color: #C9A84C; font-weight: 500; }
-    .sort-btns { display: flex; gap: 8px; flex-wrap: wrap; padding: 0 20px 20px; max-width: 1000px; margin: 0 auto; }
-    .sort-btn { padding: 5px 12px; border: 1px solid #222; border-radius: 4px; background: #111; color: #666; font-size: 12px; cursor: pointer; transition: all 0.2s; }
-    .sort-btn.active { color: #C9A84C; border-color: #C9A84C; }
-    .players-list { max-width: 1000px; margin: 0 auto; padding: 0 20px 40px; }
-    .player-row { display: grid; grid-template-columns: 36px 180px 1fr 60px 60px 60px; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid #1a1a1a; }
-    .player-row:last-child { border-bottom: none; }
-    .pos-badge { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 500; flex-shrink: 0; }
-    .POR { background: #2a1f00; color: #f59e0b; }
-    .DEF { background: #001f3f; color: #3b82f6; }
-    .VOL { background: #001f0f; color: #22c55e; }
-    .DEL { background: #1f0000; color: #ef4444; }
-    .player-info { min-width: 0; }
-    .player-name { font-size: 14px; font-weight: 500; color: white; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .player-club { font-size: 12px; color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .bar-area { display: flex; align-items: center; gap: 10px; }
-    .bar-track { flex: 1; height: 8px; background: #1a1a1a; border-radius: 4px; overflow: hidden; }
-    .bar-fill { height: 100%; border-radius: 4px; }
-    .stat-col { font-size: 13px; font-weight: 500; color: white; text-align: center; }
-    .stat-col span { font-size: 10px; color: #666; display: block; }
-    .table-header { display: grid; grid-template-columns: 36px 180px 1fr 60px 60px 60px; gap: 12px; padding: 8px 0 8px 20px; border-bottom: 1px solid #333; max-width: 1000px; margin: 0 auto; }
-    .table-header span { font-size: 10px; color: #666; letter-spacing: 1px; text-align: center; }
-    .table-header span:nth-child(2) { text-align: left; }
-    .footer { text-align: center; padding: 20px; color: #444; font-size: 12px; border-top: 1px solid #1a1a1a; margin-top: 20px; }
-    .back-link { display: inline-block; margin: 20px; color: #C9A84C; text-decoration: none; font-size: 13px; letter-spacing: 1px; }
+    .header p { color: #666; font-size: 0.85rem; letter-spacing: 2px; margin-top: 6px; }
+    .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; padding: 20px; max-width: 1000px; margin: 0 auto; }
+    .kpi { background: #111; border: 1px solid #1e1e1e; border-radius: 8px; padding: 16px; text-align: center; }
+    .kpi-label { font-size: 10px; color: #666; letter-spacing: 2px; margin-bottom: 6px; }
+    .kpi-value { font-size: 20px; font-weight: 500; color: white; }
+    .kpi-sub { font-size: 11px; color: #C9A84C; margin-top: 4px; }
+    .controls { max-width: 1000px; margin: 0 auto; padding: 0 20px 16px; display: flex; flex-wrap: wrap; gap: 20px; align-items: center; }
+    .filter-group { display: flex; gap: 6px; flex-wrap: wrap; }
+    .btn { padding: 5px 14px; border: 1px solid #222; border-radius: 20px; background: transparent; color: #666; font-size: 12px; cursor: pointer; transition: all 0.2s; }
+    .btn.active { background: #C9A84C; color: #0A0A0A; border-color: #C9A84C; font-weight: 500; }
+    .sort-label { font-size: 11px; color: #444; }
+    .table-wrap { max-width: 1000px; margin: 0 auto; padding: 0 20px 40px; }
+    .t-header { display: grid; grid-template-columns: 36px 1fr 140px 55px 45px 45px; gap: 10px; padding: 6px 0 10px; border-bottom: 1px solid #1e1e1e; font-size: 10px; color: #444; letter-spacing: 1px; }
+    .t-header span:nth-child(n+3) { text-align: right; }
+    .player-row { display: grid; grid-template-columns: 36px 1fr 140px 55px 45px 45px; gap: 10px; align-items: center; padding: 10px 0; border-bottom: 1px solid #111; cursor: pointer; transition: background 0.15s; border-radius: 4px; }
+    .player-row:hover { background: #111; }
+    .player-row.selected { background: #151505; border-color: #C9A84C33; }
+    .pos-badge { width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600; }
+    .POR { background: #1a1200; color: #f59e0b; }
+    .DEF { background: #001020; color: #3b82f6; }
+    .VOL { background: #001508; color: #22c55e; }
+    .DEL { background: #150000; color: #ef4444; }
+    .p-name { font-size: 13px; font-weight: 500; color: #eee; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .p-club { font-size: 11px; color: #555; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .bar-wrap { display: flex; align-items: center; gap: 8px; }
+    .bar-bg { flex: 1; height: 6px; background: #1a1a1a; border-radius: 3px; overflow: hidden; }
+    .bar-fill { height: 100%; border-radius: 3px; }
+    .mins-val { font-size: 11px; color: #C9A84C; min-width: 38px; text-align: right; }
+    .stat { font-size: 13px; font-weight: 500; text-align: right; }
+    .detail-panel { background: #0e0e0e; border: 1px solid #1e1e1e; border-radius: 8px; padding: 16px; margin: -4px 0 8px; display: none; }
+    .detail-panel.open { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .detail-col h4 { font-size: 10px; color: #444; letter-spacing: 2px; margin-bottom: 10px; }
+    .detail-stat { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid #111; font-size: 12px; }
+    .detail-stat:last-child { border-bottom: none; }
+    .detail-stat span:first-child { color: #666; }
+    .detail-stat span:last-child { color: white; font-weight: 500; }
+    .footer { text-align: center; padding: 20px; color: #333; font-size: 11px; border-top: 1px solid #111; margin-top: 10px; line-height: 1.8; }
+    .footer a { color: #C9A84C; text-decoration: none; }
+    .back-link { display: inline-block; margin: 16px 20px; color: #C9A84C; text-decoration: none; font-size: 12px; letter-spacing: 1px; }
     @media (max-width: 600px) {
-      .player-row { grid-template-columns: 36px 1fr 50px 40px 40px; }
-      .bar-area { display: none; }
-      .table-header { grid-template-columns: 36px 1fr 50px 40px 40px; }
+      .t-header, .player-row { grid-template-columns: 34px 1fr 90px 45px 35px 35px; }
+      .detail-panel.open { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -59,127 +64,155 @@
   <p>MINUTOS JUGADOS · CLUB + SELECCION · 11 JUN 2025 – 1 JUN 2026 · FUENTE: SOFASCORE</p>
 </div>
 
-<div class="stats-grid" id="stats-grid"></div>
+<div class="kpis" id="kpis"></div>
 
-<div class="filters">
-  <button class="filter-btn active" onclick="filter('todos', this)">Todos</button>
-  <button class="filter-btn" onclick="filter('POR', this)">Porteros</button>
-  <button class="filter-btn" onclick="filter('DEF', this)">Defensas</button>
-  <button class="filter-btn" onclick="filter('VOL', this)">Volantes</button>
-  <button class="filter-btn" onclick="filter('DEL', this)">Delanteros</button>
+<div class="controls">
+  <div class="filter-group">
+    <button class="btn active" onclick="filter('todos',this)">Todos</button>
+    <button class="btn" onclick="filter('POR',this)">Porteros</button>
+    <button class="btn" onclick="filter('DEF',this)">Defensas</button>
+    <button class="btn" onclick="filter('VOL',this)">Volantes</button>
+    <button class="btn" onclick="filter('DEL',this)">Delanteros</button>
+  </div>
+  <div class="filter-group">
+    <span class="sort-label">Ordenar:</span>
+    <button class="btn active" onclick="sortBy('mins',this)">Minutos</button>
+    <button class="btn" onclick="sortBy('goles',this)">Goles</button>
+    <button class="btn" onclick="sortBy('asis',this)">Asistencias</button>
+  </div>
 </div>
 
-<div class="sort-btns">
-  <span style="font-size:12px; color:#666; align-self:center;">Ordenar por:</span>
-  <button class="sort-btn active" onclick="sort('mins', this)">Minutos</button>
-  <button class="sort-btn" onclick="sort('goles', this)">Goles</button>
-  <button class="sort-btn" onclick="sort('asis', this)">Asistencias</button>
+<div class="table-wrap">
+  <div class="t-header">
+    <span></span>
+    <span>Jugador</span>
+    <span style="text-align:left">Minutos totales</span>
+    <span>MIN</span>
+    <span>G</span>
+    <span>A</span>
+  </div>
+  <div id="list"></div>
 </div>
-
-<div class="table-header">
-  <span></span>
-  <span>Jugador</span>
-  <span style="text-align:left; padding-left:8px;">Minutos</span>
-  <span>MIN</span>
-  <span>G</span>
-  <span>A</span>
-</div>
-
-<div class="players-list" id="players-list"></div>
 
 <div class="footer">
-  Fuente: SofaScore · Verificado partido a partido · 11 jun 2025 – 1 jun 2026 · Club + Seleccion Colombia<br>
-  Grupo K: Colombia vs Uzbekistan · RD Congo · Portugal<br><br>
-  <a href="https://www.linkedin.com/in/jairo-buenaventura" style="color:#C9A84C">LinkedIn</a> ·
-  <a href="https://github.com/jairo-buenaventura" style="color:#C9A84C">GitHub</a> ·
-  <a href="index.html" style="color:#C9A84C">Dashboard Mundial 2026</a>
+  Fuente: SofaScore · Verificado partido a partido · 11 jun 2025 – 1 jun 2026<br>
+  Incluye Liga + Copas + Seleccion Colombia · Grupo K: Colombia vs Uzbekistan · RD Congo · Portugal<br><br>
+  <a href="https://www.linkedin.com/in/jairo-buenaventura">LinkedIn</a> ·
+  <a href="https://github.com/jairo-buenaventura">GitHub</a> ·
+  <a href="index.html">Dashboard Mundial 2026</a>
 </div>
 
 <script>
 const players = [
-  { name: "Camilo Vargas", club: "Atlas", pos: "POR", mins: 3494, goles: 0, asis: 0 },
-  { name: "Alvaro Montero", club: "Velez Sarsfield", pos: "POR", mins: 1951, goles: 0, asis: 0 },
-  { name: "David Ospina", club: "Atletico Nacional", pos: "POR", mins: 3841, goles: 0, asis: 0 },
-  { name: "Davinson Sanchez", club: "Galatasaray", pos: "DEF", mins: 4376, goles: 0, asis: 4 },
-  { name: "Jhon Lucumi", club: "Bologna", pos: "DEF", mins: 4120, goles: 0, asis: 3 },
-  { name: "Yerry Mina", club: "Cagliari", pos: "DEF", mins: 2439, goles: 0, asis: 0 },
-  { name: "Willer Ditta", club: "Cruz Azul", pos: "DEF", mins: 4777, goles: 0, asis: 3 },
-  { name: "Daniel Munoz", club: "Crystal Palace", pos: "DEF", mins: 4417, goles: 0, asis: 8 },
-  { name: "Santiago Arias", club: "Independiente", pos: "DEF", mins: 2975, goles: 0, asis: 2 },
-  { name: "Johan Mojica", club: "Mallorca", pos: "DEF", mins: 3207, goles: 0, asis: 5 },
-  { name: "Deiver Machado", club: "Nantes", pos: "DEF", mins: 1444, goles: 0, asis: 0 },
-  { name: "Richard Rios", club: "Benfica", pos: "VOL", mins: 4776, goles: 0, asis: 11 },
-  { name: "Jefferson Lerma", club: "Crystal Palace", pos: "VOL", mins: 3302, goles: 0, asis: 3 },
-  { name: "Kevin Castano", club: "River Plate", pos: "VOL", mins: 2398, goles: 0, asis: 0 },
-  { name: "J.C. Portilla", club: "Athletico PR", pos: "VOL", mins: 2097, goles: 0, asis: 2 },
-  { name: "Gustavo Puerta", club: "R. Santander", pos: "VOL", mins: 2931, goles: 0, asis: 1 },
-  { name: "Jhon Arias", club: "Palmeiras", pos: "VOL", mins: 4020, goles: 8, asis: 3 },
-  { name: "Jorge Carrascal", club: "Flamengo", pos: "VOL", mins: 3040, goles: 4, asis: 7 },
-  { name: "Juan F. Quintero", club: "River Plate", pos: "VOL", mins: 2478, goles: 5, asis: 8 },
-  { name: "James Rodriguez", club: "Leon / Minnesota", pos: "VOL", mins: 2080, goles: 5, asis: 7 },
-  { name: "Jaminton Campaz", club: "Rosario Central", pos: "VOL", mins: 2487, goles: 2, asis: 4 },
-  { name: "Carlos A. Gomez", club: "Vasco da Gama", pos: "VOL", mins: 3802, goles: 0, asis: 0 },
-  { name: "Luis Diaz", club: "Bayern Munchen", pos: "DEL", mins: 4835, goles: 17, asis: 18 },
-  { name: "Cucho Hernandez", club: "Real Betis", pos: "DEL", mins: 3232, goles: 7, asis: 5 },
-  { name: "Luis J. Suarez", club: "Sporting CP", pos: "DEL", mins: 4698, goles: 22, asis: 8 },
-  { name: "Jhon Cordoba", club: "Krasnodar", pos: "DEL", mins: 3628, goles: 17, asis: 5 },
+  { name: "Camilo Vargas", club: "Atlas", pos: "POR", mins: 3494, mins_club: 3150, mins_sel: 344, goles_club: 0, goles_sel: 0, goles: 0, asis_club: 1, asis_sel: 0, asis: 1 },
+  { name: "Alvaro Montero", club: "Velez Sarsfield", pos: "POR", mins: 2131, mins_club: 1861, mins_sel: 270, goles_club: 0, goles_sel: 0, goles: 0, asis_club: 0, asis_sel: 0, asis: 0 },
+  { name: "David Ospina", club: "Atletico Nacional", pos: "POR", mins: 3841, mins_club: 3735, mins_sel: 106, goles_club: 0, goles_sel: 0, goles: 0, asis_club: 0, asis_sel: 0, asis: 0 },
+  { name: "Davinson Sanchez", club: "Galatasaray", pos: "DEF", mins: 4153, mins_club: 3568, mins_sel: 585, goles_club: 2, goles_sel: 1, goles: 3, asis_club: 0, asis_sel: 1, asis: 1 },
+  { name: "Jhon Lucumi", club: "Bologna", pos: "DEF", mins: 4120, mins_club: 3580, mins_sel: 540, goles_club: 1, goles_sel: 1, goles: 2, asis_club: 1, asis_sel: 0, asis: 1 },
+  { name: "Yerry Mina", club: "Cagliari", pos: "DEF", mins: 2439, mins_club: 2243, mins_sel: 196, goles_club: 2, goles_sel: 1, goles: 3, asis_club: 0, asis_sel: 1, asis: 1 },
+  { name: "Willer Ditta", club: "Cruz Azul", pos: "DEF", mins: 4777, mins_club: 4613, mins_sel: 164, goles_club: 1, goles_sel: 0, goles: 1, asis_club: 2, asis_sel: 0, asis: 2 },
+  { name: "Daniel Munoz", club: "Crystal Palace", pos: "DEF", mins: 4222, mins_club: 3880, mins_sel: 342, goles_club: 5, goles_sel: 0, goles: 5, asis_club: 4, asis_sel: 0, asis: 4 },
+  { name: "Santiago Arias", club: "Independiente", pos: "DEF", mins: 2975, mins_club: 2597, mins_sel: 378, goles_club: 0, goles_sel: 0, goles: 0, asis_club: 2, asis_sel: 0, asis: 2 },
+  { name: "Johan Mojica", club: "Mallorca", pos: "DEF", mins: 3207, mins_club: 2737, mins_sel: 470, goles_club: 0, goles_sel: 0, goles: 0, asis_club: 4, asis_sel: 0, asis: 4 },
+  { name: "Deiver Machado", club: "Nantes", pos: "DEF", mins: 1379, mins_club: 1309, mins_sel: 70, goles_club: 0, goles_sel: 0, goles: 0, asis_club: 1, asis_sel: 0, asis: 1 },
+  { name: "Richard Rios", club: "Benfica", pos: "VOL", mins: 3698, mins_club: 3183, mins_sel: 515, goles_club: 8, goles_sel: 0, goles: 8, asis_club: 0, asis_sel: 1, asis: 1 },
+  { name: "Jefferson Lerma", club: "Crystal Palace", pos: "VOL", mins: 2893, mins_club: 2376, mins_sel: 517, goles_club: 0, goles_sel: 2, goles: 2, asis_club: 4, asis_sel: 1, asis: 5 },
+  { name: "Kevin Castano", club: "River Plate", pos: "VOL", mins: 2151, mins_club: 1901, mins_sel: 250, goles_club: 0, goles_sel: 0, goles: 0, asis_club: 0, asis_sel: 0, asis: 0 },
+  { name: "J.C. Portilla", club: "Athletico PR", pos: "VOL", mins: 2097, mins_club: 1899, mins_sel: 198, goles_club: 0, goles_sel: 0, goles: 0, asis_club: 1, asis_sel: 0, asis: 1 },
+  { name: "Gustavo Puerta", club: "R. Santander", pos: "VOL", mins: 2931, mins_club: 2714, mins_sel: 217, goles_club: 3, goles_sel: 1, goles: 4, asis_club: 1, asis_sel: 0, asis: 1 },
+  { name: "Jhon Arias", club: "Palmeiras", pos: "VOL", mins: 3390, mins_club: 3078, mins_sel: 312, goles_club: 8, goles_sel: 1, goles: 9, asis_club: 3, asis_sel: 0, asis: 3 },
+  { name: "Jorge Carrascal", club: "Flamengo", pos: "VOL", mins: 3035, mins_club: 2929, mins_sel: 106, goles_club: 5, goles_sel: 0, goles: 5, asis_club: 9, asis_sel: 1, asis: 10 },
+  { name: "Juan F. Quintero", club: "River Plate", pos: "VOL", mins: 2415, mins_club: 2221, mins_sel: 194, goles_club: 5, goles_sel: 1, goles: 6, asis_club: 7, asis_sel: 3, asis: 10 },
+  { name: "James Rodriguez", club: "Leon/Minnesota", pos: "VOL", mins: 2081, mins_club: 1512, mins_sel: 569, goles_club: 3, goles_sel: 2, goles: 5, asis_club: 4, asis_sel: 6, asis: 10 },
+  { name: "Jaminton Campaz", club: "Rosario Central", pos: "VOL", mins: 2487, mins_club: 2361, mins_sel: 126, goles_club: 1, goles_sel: 0, goles: 1, asis_club: 5, asis_sel: 0, asis: 5 },
+  { name: "Luis Diaz", club: "Bayern Munchen", pos: "DEL", mins: 4730, mins_club: 4065, mins_sel: 665, goles_club: 26, goles_sel: 3, goles: 29, asis_club: 19, asis_sel: 3, asis: 22 },
+  { name: "Cucho Hernandez", club: "Real Betis", pos: "DEL", mins: 3232, mins_club: 3127, mins_sel: 105, goles_club: 15, goles_sel: 0, goles: 15, asis_club: 3, asis_sel: 0, asis: 3 },
+  { name: "Luis J. Suarez", club: "Sporting CP", pos: "DEL", mins: 4718, mins_club: 4349, mins_sel: 369, goles_club: 36, goles_sel: 5, goles: 41, asis_club: 12, asis_sel: 0, asis: 12 },
+  { name: "Jhon Cordoba", club: "Krasnodar", pos: "DEL", mins: 3448, mins_club: 3204, mins_sel: 244, goles_club: 22, goles_sel: 2, goles: 24, asis_club: 11, asis_sel: 0, asis: 11 },
+  { name: "Carlos A. Gomez", club: "Vasco da Gama", pos: "VOL", mins: 3802, mins_club: 3693, mins_sel: 109, goles_club: 5, goles_sel: 0, goles: 5, asis_club: 10, asis_sel: 0, asis: 10 },
 ];
 
 const barColors = { POR: '#f59e0b', DEF: '#3b82f6', VOL: '#22c55e', DEL: '#ef4444' };
 const maxMins = Math.max(...players.map(p => p.mins));
-let currentFilter = 'todos';
-let currentSort = 'mins';
+let curFilter = 'todos', curSort = 'mins', selected = null;
 
 function filter(pos, btn) {
-  currentFilter = pos;
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  curFilter = pos;
+  document.querySelectorAll('.filter-group .btn').forEach(b => {
+    if (['todos','POR','DEF','VOL','DEL'].includes(b.textContent.trim().substring(0,3)) || b.textContent === 'Todos') b.classList.remove('active');
+  });
+  btn.classList.add('active');
+  selected = null;
+  render();
+}
+
+function sortBy(field, btn) {
+  curSort = field;
+  document.querySelectorAll('.filter-group .btn').forEach(b => {
+    if (['Minutos','Goles','Asistencias'].includes(b.textContent)) b.classList.remove('active');
+  });
   btn.classList.add('active');
   render();
 }
 
-function sort(field, btn) {
-  currentSort = field;
-  document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
+function togglePlayer(idx) {
+  selected = selected === idx ? null : idx;
   render();
 }
 
 function render() {
-  const filtered = currentFilter === 'todos' ? players : players.filter(p => p.pos === currentFilter);
-  const sorted = [...filtered].sort((a, b) => b[currentSort] - a[currentSort]);
-  const top = [...filtered].sort((a, b) => b.mins - a.mins)[0];
+  const filtered = curFilter === 'todos' ? players : players.filter(p => p.pos === curFilter);
+  const sorted = [...filtered].sort((a,b) => b[curSort] - a[curSort]);
+  const top = sorted[0];
   const high = filtered.filter(p => p.mins >= 3000).length;
 
-  document.getElementById('stats-grid').innerHTML = `
-    <div class="stat-card">
-      <div class="stat-label">JUGADOR CON MAS MINUTOS</div>
-      <div class="stat-value" style="font-size:16px">${top.name}</div>
-      <div class="stat-sub">${top.mins.toLocaleString()} min · ${top.club}</div>
+  document.getElementById('kpis').innerHTML = `
+    <div class="kpi">
+      <div class="kpi-label">MAS MINUTOS</div>
+      <div class="kpi-value" style="font-size:15px">${top.name}</div>
+      <div class="kpi-sub">${top.mins.toLocaleString()} min · ${top.club}</div>
     </div>
-    <div class="stat-card">
-      <div class="stat-label">JUGADORES +3000 MIN</div>
-      <div class="stat-value">${high}</div>
-      <div class="stat-sub">de ${filtered.length} convocados</div>
+    <div class="kpi">
+      <div class="kpi-label">JUGADORES +3000 MIN</div>
+      <div class="kpi-value">${high}</div>
+      <div class="kpi-sub">de ${filtered.length} convocados</div>
     </div>
   `;
 
-  document.getElementById('players-list').innerHTML = sorted.map(p => `
-    <div class="player-row">
-      <div class="pos-badge ${p.pos}">${p.pos}</div>
-      <div class="player-info">
-        <div class="player-name">${p.name}</div>
-        <div class="player-club">${p.club}</div>
+  document.getElementById('list').innerHTML = sorted.map((p, i) => {
+    const pct = Math.round((p.mins / maxMins) * 100);
+    const isSelected = selected === i;
+    return `
+      <div class="player-row ${isSelected ? 'selected' : ''}" onclick="togglePlayer(${i})">
+        <div class="pos-badge ${p.pos}">${p.pos}</div>
+        <div>
+          <div class="p-name">${p.name}</div>
+          <div class="p-club">${p.club}</div>
+        </div>
+        <div class="bar-wrap">
+          <div class="bar-bg"><div class="bar-fill" style="width:${pct}%;background:${barColors[p.pos]}"></div></div>
+          <div class="mins-val">${p.mins.toLocaleString()}'</div>
+        </div>
+        <div class="stat" style="color:#888;font-size:11px">${p.mins_club.toLocaleString()}+${p.mins_sel}</div>
+        <div class="stat">${p.goles}</div>
+        <div class="stat">${p.asis}</div>
       </div>
-      <div class="bar-area">
-        <div class="bar-track">
-          <div class="bar-fill" style="width:${Math.round((p.mins/maxMins)*100)}%; background:${barColors[p.pos]};"></div>
+      <div class="detail-panel ${isSelected ? 'open' : ''}">
+        <div class="detail-col">
+          <h4>CON EL CLUB</h4>
+          <div class="detail-stat"><span>Minutos</span><span>${p.mins_club.toLocaleString()}'</span></div>
+          <div class="detail-stat"><span>Goles</span><span>${p.goles_club}</span></div>
+          <div class="detail-stat"><span>Asistencias</span><span>${p.asis_club}</span></div>
+        </div>
+        <div class="detail-col">
+          <h4>CON COLOMBIA</h4>
+          <div class="detail-stat"><span>Minutos</span><span>${p.mins_sel}'</span></div>
+          <div class="detail-stat"><span>Goles</span><span>${p.goles_sel}</span></div>
+          <div class="detail-stat"><span>Asistencias</span><span>${p.asis_sel}</span></div>
         </div>
       </div>
-      <div class="stat-col">${p.mins.toLocaleString()}<span>MIN</span></div>
-      <div class="stat-col">${p.goles}<span>G</span></div>
-      <div class="stat-col">${p.asis}<span>A</span></div>
-    </div>
-  `).join('');
+    `;
+  }).join('');
 }
 
 render();
