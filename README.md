@@ -83,6 +83,15 @@ Endpoints used:
 
 API consumption: ~5 calls per execution × every 3 min ≈ 2,400 calls/day (plan allows 7,500/day)
 
+### ⚠️ API Key Notice
+This project uses a personal API-Football key for demonstration purposes.
+If you clone or fork this repository, **you must replace the API key with your own**.
+Get your free key at [api-football.com](https://www.api-football.com/).
+
+Replace it in:
+- `index.html` — in the map script and widget config
+- `Mundial2026_auto.ipynb` — in Cell 1
+
 Author
 
 Jairo Buenaventura
