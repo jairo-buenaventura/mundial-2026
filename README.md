@@ -1,5 +1,6 @@
 # mundial-2026
-Dashboard interactivo del Mundial de la FIFA 2026 con datos en tiempo real
+Interactive dashboard for the 2026 FIFA World Cup with real-time data
+
 Overview
 
 A real-time analytics dashboard for the FIFA World Cup 2026, tracking every match, group standing, top scorer, and assist leader across 48 teams playing in Canada, USA, and Mexico.
