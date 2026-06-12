@@ -342,7 +342,7 @@
       const horas = Math.floor((transcurrido % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutos = Math.floor((transcurrido % (1000 * 60 * 60)) / (1000 * 60));
       const segundos = Math.floor((transcurrido % (1000 * 60)) / 1000);
-      document.querySelector('.countdown h2').textContent = '⚽ WE ARE 26 · EN JUEGO';
+      document.querySelector('.countdown h2').style.display = 'none';
       document.getElementById('dias').textContent = String(dias).padStart(2, '0');
       document.getElementById('horas').textContent = String(horas).padStart(2, '0');
       document.getElementById('minutos').textContent = String(minutos).padStart(2, '0');
