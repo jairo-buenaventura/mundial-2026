@@ -185,9 +185,8 @@
 
         <!-- COLUMNA IZQUIERDA: Lista de partidos -->
         <div class="col-md-3">
-          <div class="widget-card" style="height:75vh; overflow-y:auto;">
+          <div style="height:75vh; overflow-y:auto; background:#0d1b2a; border:1px solid #1a3a6b; border-radius:8px;">
             <div style="padding:10px;">
-              <!-- Filtro por ronda -->
               <select id="filtro-ronda" style="width:100%; background:#1a3a6b; color:#C9A84C; border:1px solid #C9A84C; border-radius:6px; padding:6px; margin-bottom:8px; font-size:0.8rem;">
                 <option value="">Todas las rondas</option>
               </select>
@@ -198,14 +197,14 @@
 
         <!-- COLUMNA CENTRAL: Detalle del partido -->
         <div class="col-md-4">
-          <div id="detalle-partido" class="widget-card" style="height:75vh; overflow-y:auto; display:flex; align-items:center; justify-content:center;">
+          <div id="detalle-partido" style="height:75vh; overflow-y:auto; background:#0d1b2a; border:1px solid #1a3a6b; border-radius:8px; display:flex; align-items:center; justify-content:center;">
             <p style="color:#aaaaaa; font-size:0.85rem; letter-spacing:2px; text-align:center;">SELECCIONA UN PARTIDO</p>
           </div>
         </div>
 
         <!-- COLUMNA DERECHA: Standings -->
         <div class="col-md-5">
-          <div class="widget-card" style="height:75vh; overflow-y:auto;">
+          <div style="height:75vh; overflow-y:auto; background:#0d1b2a; border:1px solid #1a3a6b; border-radius:8px;">
             <div style="padding:10px;">
               <select id="filtro-grupo" style="width:100%; background:#1a3a6b; color:#C9A84C; border:1px solid #C9A84C; border-radius:6px; padding:6px; margin-bottom:8px; font-size:0.8rem;">
                 <option value="">Todos los grupos</option>
@@ -359,18 +358,54 @@
     const visitanteGano = f.teams.away.winner;
     const fecha = new Date(f.fixture.date).toLocaleDateString('es-ES', {weekday:'short', day:'2-digit', month:'short', year:'numeric'});
 
-    // Eventos del cache
-    const eventos = snapshotData.eventos?.[String(fixtureId)] || [];
-    const goles = eventos.filter(e => e.tipo === 'Goal');
+    // Eventos completos del snapshot
+    const eventos = snapshotData.eventos_completos?.[String(fixtureId)] || [];
 
-    const eventosHTML = goles.length > 0 ? goles.map(e => {
-      const esLocal = f.teams.home.name === e.equipo;
-      const icono = e.detalle === 'Own Goal' ? '⚽🔴' : e.detalle === 'Penalty' ? '⚽🟡' : '⚽';
-      return `<div class="evento-item">
-        ${esLocal ? `<span class="evento-min">${e.min || ''}′</span><span class="evento-tipo">${icono}</span><span class="evento-jugador">${e.jugador || ''} ${e.asistente ? '<span style="color:#888;font-size:0.7rem">→ '+e.asistente+'</span>' : ''}</span><span style="flex:1"></span>` 
-                 : `<span style="flex:1"></span><span class="evento-jugador" style="text-align:right">${e.jugador || ''} ${e.asistente ? '<span style="color:#888;font-size:0.7rem">→ '+e.asistente+'</span>' : ''}</span><span class="evento-tipo">${icono}</span><span class="evento-min" style="text-align:right">${e.min || ''}′</span>`}
-      </div>`;
-    }).join('') : '<p style="color:#888;text-align:center;padding:12px;font-size:0.78rem">Sin eventos registrados</p>';
+    function renderEvento(e) {
+      const esLocal = f.teams.home.id === e.team?.id;
+      const min = e.time?.elapsed ? `${e.time.elapsed}${e.time.extra ? '+'+e.time.extra : ''}′` : '';
+      const jugador = e.player?.name || '';
+      const asistente = e.assist?.name || '';
+
+      let icono = '';
+      let info = '';
+
+      if (e.type === 'Goal') {
+        icono = e.detail === 'Own Goal' ? '⚽🔴' : e.detail === 'Penalty' ? '⚽🟡' : '⚽';
+        info = asistente ? `<span style="color:#888;font-size:0.68rem"> → ${asistente}</span>` : '';
+      } else if (e.type === 'Card') {
+        icono = e.detail === 'Yellow Card' ? '🟨' : e.detail === 'Red Card' ? '🟥' : '🟧';
+        info = e.comments ? `<span style="color:#888;font-size:0.68rem"> (${e.comments})</span>` : '';
+      } else if (e.type === 'subst') {
+        icono = '🔄';
+        info = asistente ? `<span style="color:#00cc88;font-size:0.68rem"> ↑${asistente}</span>` : '';
+      } else if (e.type === 'Var') {
+        icono = '📺';
+        info = `<span style="color:#888;font-size:0.68rem"> ${e.detail}</span>`;
+      } else {
+        return '';
+      }
+
+      if (esLocal) {
+        return `<div class="evento-item">
+          <span class="evento-min">${min}</span>
+          <span class="evento-tipo">${icono}</span>
+          <span class="evento-jugador">${jugador}${info}</span>
+          <span style="flex:1"></span>
+        </div>`;
+      } else {
+        return `<div class="evento-item">
+          <span style="flex:1"></span>
+          <span class="evento-jugador" style="text-align:right">${jugador}${info}</span>
+          <span class="evento-tipo">${icono}</span>
+          <span class="evento-min" style="text-align:right">${min}</span>
+        </div>`;
+      }
+    }
+
+    const eventosHTML = eventos.length > 0
+      ? eventos.map(renderEvento).filter(Boolean).join('')
+      : '<p style="color:#888;text-align:center;padding:12px;font-size:0.78rem">Sin eventos registrados</p>';
 
     document.getElementById('detalle-partido').innerHTML = `
       <div style="width:100%">
